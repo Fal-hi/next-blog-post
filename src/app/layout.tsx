@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Header } from "@/components/Header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
@@ -24,10 +21,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} antialiased`}>
+        <NuqsAdapter>
+          <Header />
+          <main className="relative container mx-auto my-10 px-4 md:max-w-10/12 xl:max-w-2/4">
+            {children}
+          </main>
+        </NuqsAdapter>
       </body>
     </html>
   );
