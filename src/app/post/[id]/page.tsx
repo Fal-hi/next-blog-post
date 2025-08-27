@@ -1,8 +1,7 @@
-import { getPostById, getPostByIdWithComments } from "@/api/route";
+import { getPostById, getPostByIdWithComments } from "@/lib/posts";
 import { BackButton } from "@/components/BackButton";
 import { Tag } from "@/components/Tag";
-import { ParamProps } from "@/types";
-import { Comments } from "@/types/Comments";
+import { Comments } from "@/types/index";
 
 export default async function PostDetail({ params }: ParamProps) {
   const post = await getPostById(params.id ?? "");

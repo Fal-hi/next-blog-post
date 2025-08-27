@@ -1,12 +1,16 @@
-import { getAllPosts } from "@/api/route";
-import { ListPost } from "./components/ListPost";
+import { getAllPosts } from "@/lib/posts";
+import { ListPost } from "@/components/ListPost";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Home() {
   const allPosts = await getAllPosts();
   return (
     <>
       <h1 className="text-2xl font-bold">Blog Posts</h1>
-      <ListPost data={allPosts} />
+      <Suspense fallback={<Loading />}>
+        <ListPost data={allPosts} />
+      </Suspense>
     </>
   );
 }

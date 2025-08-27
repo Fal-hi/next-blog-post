@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-
-type TagProps = {
-  children: ReactNode;
-  className?: string;
-  onClick?: () => void;
-};
+import { TagProps } from "@/types/index";
 
 export function Tag({ children, className, onClick }: TagProps) {
   return (

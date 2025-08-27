@@ -1,9 +1,10 @@
 "use client";
 
-import { useQueryState } from "nuqs";
 import { KeyboardEvent, useCallback, useEffect, useState } from "react";
+import { useQueryState } from "nuqs";
 import { ListPost } from "@/components/ListPost";
-import { Posts } from "@/types/Posts";
+import { Posts } from "@/types/index";
+import { getPostBySearch } from "@/lib/posts";
 
 export default function SearchPost() {
   const [query, setQuery] = useQueryState("q", { defaultValue: "" });
@@ -11,16 +12,8 @@ export default function SearchPost() {
 
   const getDataPosts = useCallback(async () => {
     if (!query) return;
-    try {
-      const response = await fetch(
-        `https://dummyjson.com/posts/search?q=${query}`,
-      );
-      if (!response.ok) throw new Error("Failed to get post by search");
-      const data = await response.json();
-      setData(data.posts);
-    } catch (error) {
-      console.log(error);
-    }
+    const res = await getPostBySearch(query);
+    setData(res);
   }, [query]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -49,13 +42,15 @@ export default function SearchPost() {
           onKeyDown={handleKeyDown}
         />
       </section>
-      {data ? (
+      {!query ? null : data && data.length > 0 ? (
         <ListPost data={data} keyword={query} />
-      ) : Array(data).length === 0 ? (
-        <section className="grid h-[500px] items-center">
-          <p className="text-center">Post not found</p>
+      ) : (
+        <section className="grid min-h-screen items-center">
+          <p className="text-center">
+            No tags found for the keyword {`"${query}"`}
+          </p>
         </section>
-      ) : null}
+      )}
     </>
   );
 }

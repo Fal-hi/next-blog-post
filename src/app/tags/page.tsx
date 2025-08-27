@@ -1,5 +1,5 @@
-import { getTagList } from "@/api/route";
 import Link from "next/link";
+import { getTagList } from "@/lib/posts";
 
 export default async function Tags() {
   const tagList = await getTagList();

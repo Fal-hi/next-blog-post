@@ -1,13 +1,16 @@
-import { DataPosts, Posts } from "@/types/Posts";
-import { Tag } from "@/components/Tag";
 import Link from "next/link";
-import { highlightText } from "@/libs/highlightText";
+import { Tag } from "@/components/Tag";
+import { highlightText } from "src/utils/highlightText";
+import { DataPosts, Posts } from "@/types/index";
 
 export function ListPost({ data, keyword }: DataPosts) {
   return (
     <ul className="mt-4 flex flex-col gap-y-4">
       {data.map((post: Posts) => (
-        <li key={post.id} className="cursor-pointer hover:bg-zinc-100">
+        <li
+          key={post.id}
+          className="min-h-[8rem] cursor-pointer border-b border-zinc-300 hover:bg-zinc-100"
+        >
           <Link href={`/post/${post.id}`}>
             <section className="flex justify-between gap-x-10">
               <h2 className="mb-2 line-clamp-2 overflow-hidden text-lg font-semibold md:text-xl">
@@ -30,7 +33,6 @@ export function ListPost({ data, keyword }: DataPosts) {
               {highlightText(post.body, keyword ?? "")}
             </p>
           </Link>
-          <hr className="mt-2 text-zinc-300" />
         </li>
       ))}
     </ul>

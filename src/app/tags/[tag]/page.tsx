@@ -1,6 +1,5 @@
-import { getPostByTag } from "@/api/route";
+import { getPostByTag } from "@/lib/posts";
 import { BackButton } from "@/components/BackButton";
-import { ParamProps } from "@/types";
 import { ListPost } from "@/components/ListPost";
 
 export default async function PostsByTag({ params }: ParamProps) {
