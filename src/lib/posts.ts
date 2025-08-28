@@ -55,7 +55,9 @@ export async function getTagList() {
 
 export async function getPostByTag(tag: string) {
   try {
-    const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`);
+    const response = await fetch(`https://dummyjson.com/posts/tag/${tag}`, {
+      next: { revalidate: 60 },
+    });
     if (!response.ok) throw new Error("Failed to get posts by tag");
     const data = await response.json();
     return data.posts;

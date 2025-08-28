@@ -3,9 +3,10 @@ import { BackButton } from "@/components/BackButton";
 import { Tag } from "@/components/Tag";
 import { Comments } from "@/types/index";
 
-export default async function PostDetail({ params }: ParamProps) {
-  const post = await getPostById(params.id ?? "");
-  const comments = await getPostByIdWithComments(params.id ?? "");
+export default async function PostDetail({ params }: IdParamProps) {
+  const { id } = await params;
+  const post = await getPostById(id ?? "");
+  const comments = await getPostByIdWithComments(id ?? "");
   return (
     <>
       <h1 className="mt-16 text-3xl font-semibold md:text-4xl">{post.title}</h1>
