@@ -37,7 +37,7 @@ export default function SearchPost() {
   }, [query]);
 
   return (
-    <>
+    <section>
       <section className="flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
         <h1 className="text-2xl font-bold">Search Post</h1>
         <input
@@ -60,6 +60,6 @@ export default function SearchPost() {
           </p>
         </section>
       )}
-    </>
+    </section>
   );
 }

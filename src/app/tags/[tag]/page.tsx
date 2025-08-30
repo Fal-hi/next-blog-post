@@ -10,10 +10,12 @@ export default async function PostsByTag({
   const { tag } = await params;
   const postsByTag = await getPostByTag(tag ?? "");
   return (
-    <>
+    <article>
       <h1 className="text-2xl font-bold">{tag}</h1>
       <ListPost data={postsByTag} />
-      <BackButton className="mt-10" />
-    </>
+      <footer>
+        <BackButton className="mt-10" />
+      </footer>
+    </article>
   );
 }

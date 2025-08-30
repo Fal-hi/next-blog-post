@@ -10,8 +10,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Next Blog Post",
-  description: "Blog Post with Next JS",
+  title: "Next JS Blog Post",
+  description: "Simple Blog Post with Next JS and Typescript",
 };
 
 export const experimental_ppr = true;

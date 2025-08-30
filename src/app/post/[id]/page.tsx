@@ -12,7 +12,7 @@ export default async function PostDetail({
   const post = await getPostById(id ?? "");
   const comments = await getPostByIdWithComments(id ?? "");
   return (
-    <>
+    <article>
       <h1 className="mt-16 text-3xl font-semibold md:text-4xl">{post.title}</h1>
       <section className="mt-6 flex flex-wrap items-center justify-between">
         <section className="flex max-w-max gap-2">
@@ -21,9 +21,9 @@ export default async function PostDetail({
           ))}
         </section>
         <section className="flex gap-2 pt-1 text-xs font-medium md:text-sm">
-          <p>{post.reactions.likes} Likes</p>
-          <p>{post.reactions.dislikes} Dislikes</p>
-          <p>{post.views} Views</p>
+          <span>{post.reactions.likes} Likes</span>
+          <span>{post.reactions.dislikes} Dislikes</span>
+          <span>{post.views} Views</span>
         </section>
       </section>
       <p className="mt-4 text-base">{post.body}</p>
@@ -45,7 +45,9 @@ export default async function PostDetail({
           </ul>
         </section>
       )}
-      <BackButton className="mt-10" />
-    </>
+      <footer>
+        <BackButton className="mt-10" />
+      </footer>
+    </article>
   );
 }
