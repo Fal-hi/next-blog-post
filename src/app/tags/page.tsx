@@ -10,17 +10,16 @@ export default async function Tags() {
       <nav>
         <ul className="flex flex-wrap gap-3">
           {tagList.map((tag: string, index: number) => (
-              <li key={index}>
-                <Link
-                  prefetch
-                  href={`/tags/${tag}`}
-                  className="cursor-pointer border border-zinc-100 px-1 hover:bg-zinc-300"
-                >
-                  {tag}
-                </Link>
-              </li>
-            );
-          })}
+            <li key={index}>
+              <Link
+                prefetch
+                href={`/tags/${tag}`}
+                className="cursor-pointer border border-zinc-100 px-1 hover:bg-zinc-300"
+              >
+                {tag}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </section>

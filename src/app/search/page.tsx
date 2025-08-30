@@ -5,15 +5,22 @@ import { useQueryState } from "nuqs";
 import { ListPost } from "@/components/ListPost";
 import { Posts } from "@/types/index";
 import { getPostBySearch } from "@/lib/posts";
+import { SkeletonPostLoading } from "@/components/SkeletonLoading";
 
 export default function SearchPost() {
   const [query, setQuery] = useQueryState("q", { defaultValue: "" });
   const [data, setData] = useState<Posts[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getDataPosts = useCallback(async () => {
     if (!query) return;
-    const res = await getPostBySearch(query);
-    setData(res);
+    setIsLoading(true);
+    try {
+      const res = await getPostBySearch(query);
+      setData(res);
+    } finally {
+      setIsLoading(false);
+    }
   }, [query]);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -42,7 +49,9 @@ export default function SearchPost() {
           onKeyDown={handleKeyDown}
         />
       </section>
-      {!query ? null : data && data.length > 0 ? (
+      {!query ? null : isLoading ? (
+        <SkeletonPostLoading length={5} />
+      ) : data && data.length > 0 ? (
         <ListPost data={data} keyword={query} />
       ) : (
         <section className="grid min-h-screen items-center">

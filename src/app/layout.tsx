@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   description: "Blog Post with Next JS",
 };
 
+export const experimental_ppr = true;
+
 export default function RootLayout({
   children,
 }: Readonly<{

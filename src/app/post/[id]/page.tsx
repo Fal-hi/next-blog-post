@@ -3,7 +3,11 @@ import { BackButton } from "@/components/BackButton";
 import { Tag } from "@/components/Tag";
 import { Comments } from "@/types/index";
 
-export default async function PostDetail({ params }: IdParamProps) {
+export default async function PostDetail({
+  params,
+}: {
+  params: { id: string };
+}) {
   const { id } = await params;
   const post = await getPostById(id ?? "");
   const comments = await getPostByIdWithComments(id ?? "");
